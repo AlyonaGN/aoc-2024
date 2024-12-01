@@ -1,20 +1,21 @@
 from util import get_input, submit
-from queue import PriorityQueue
+from heapq import heappush, heappop
 
-def findDistance(input: list[str]) -> int: 
-    def buildQueuesFromInput(input: list[str]) -> tuple[PriorityQueue, PriorityQueue]: 
-        _listA = PriorityQueue()
-        _listB = PriorityQueue()
+def findDistance(input: str) -> int: 
+    
+    def buildQueuesFromInput(input: list[str]) -> tuple[list[int], list[int]]: 
+        _listA: list[int] = []
+        _listB: list[int] = []
         for line in input.splitlines(): 
             [lineA, lineB] = line.split('   ')
-            _listA.put(lineA)
-            _listB.put(lineB)
+            heappush(_listA, lineA)
+            heappush(_listB, lineB)
         return [_listA, _listB]
     
-    def calculateDistance(listA: PriorityQueue, listB: PriorityQueue) -> int: 
+    def calculateDistance(listA: list[int], listB: list[int]) -> int: 
         distance = 0
-        while not listA.empty() and not listB.empty(): 
-            distance += abs(int(listA.get()) - int(listB.get()))
+        while len(listA) != 0 and len(listB) != 0: 
+            distance += abs(int(heappop(listA)) - int(heappop(listB)))
         return distance
           
     
@@ -25,4 +26,4 @@ input = get_input(1).strip()
 res = findDistance(input)
 print(res)
 
-submit(1, 1, res)
+# submit(1, 1, res)
