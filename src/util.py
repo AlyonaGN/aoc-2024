@@ -6,7 +6,6 @@ load_dotenv()
 
 
 SESSION_COOKIE = os.environ['SESSION_COOKIE']
-print(SESSION_COOKIE)
 
 AOC_COOKIE = SESSION_COOKIE
 YEAR = '2024'
@@ -45,11 +44,3 @@ def submit(day, level, answer):
         print('VERDICT : ALREADY SOLVED')
     else:
         print('VERDICT : OK !')
-
-DAY = 25
-PART = 1
-s = get_input(DAY).strip()
-
-ans = 123
-
-submit(DAY, PART, ans)
