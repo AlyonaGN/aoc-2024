@@ -23,7 +23,39 @@ def findDistance(input: str) -> int:
     return calculateDistance(listA, listB)
 
 input = get_input(1).strip()
-res = findDistance(input)
-print(res)
+distance = findDistance(input)
 
-# submit(1, 1, res)
+# submit(1, 1, distance)
+
+def findSimilarity(input: str) -> int: 
+    def parseInput(input: list[str]) -> tuple[list[int], dict[int, int]]: 
+        _listA: list[int] = []
+        _dictB: dict[int, int] = {}
+        for line in input.splitlines(): 
+            [lineA, lineB] = line.split('   ')
+            _listA.append(lineA)
+            if lineB not in _dictB: 
+                _dictB[lineB] = 1
+            else:
+                _dictB[lineB] += 1
+        return [_listA, _dictB]
+    
+    def calculateSimilarity(_listA, _dictB) -> int: 
+        print(_listA, _dictB)
+        similarity = 0
+        for item in _listA: 
+            if item in _dictB: 
+                similarity += int(item) * _dictB[item]
+                # prevent counting the same item multiple times
+                del _dictB[item]
+        return similarity
+    
+    [_listA, _dictB] = parseInput(input)
+    return calculateSimilarity(_listA, _dictB)
+
+
+
+input_2 = get_input(1).strip()
+similarity = findSimilarity(input_2)
+
+submit(1, 2, similarity)
