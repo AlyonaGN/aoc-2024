@@ -29,11 +29,10 @@ def multiplyWithInstructions(input: str) -> int:
         elif (match.startswith("do()")):
             canDo = True
         elif (match.startswith("don")):
-            print("yo")
             canDo = False
 
     return total
 
 res2 = multiplyWithInstructions(input)
 print(res2)
-submit(3, 2, res)
+submit(3, 2, res2)
