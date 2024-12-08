@@ -16,9 +16,8 @@ res = multiply(input)
 # submit(3, 1, res)
 
 def multiplyWithInstructions(input: str) -> int:
-    # try negative lookbehinds 
-    # to-do: adjust for "do"
-    muls = re.finditer(r"?<!\bdon't\b[a-z])mul\(\d\d?\d?,\d\d?\d?\)", input, re.IGNORECASE)
+    
+    mulsDosDonts = re.finditer(r"(?:mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\))", input, re.IGNORECASE)
     total = 0
     for mul in muls:
         [intA, intB] = re.findall(r"\d\d?\d?", mul.group())
